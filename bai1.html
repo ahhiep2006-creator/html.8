@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xem trước hình ảnh</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #image { 
+      width: 400px; 
+      height: 250px; 
+      border: 2px solid #999; 
+      margin: 20px auto; 
+      background-color: #f0f0f0;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      color: #555;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    #thumbnails {
+      margin-top: 20px;
+    }
+
+    img.preview {
+      width: 100px;
+      height: 70px;
+      margin: 10px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    img.preview:hover {
+      border-color: #333;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Xem trước hình ảnh</h1>
+
+  <div id="image">Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.</div>
+
+  <div id="thumbnails">
+    <img class="preview" src="https://placekitten.com/200/150" alt="Mèo con dễ thương"
+         onmouseover="update(this)" onmouseout="unDo()" />
+
+    <img class="preview" src="https://placebear.com/200/150" alt="Gấu đáng yêu"
+         onmouseover="update(this)" onmouseout="unDo()" />
+
+    <img class="preview" src="https://placebeard.it/200x150" alt="Người đàn ông có râu"
+         onmouseover="update(this)" onmouseout="unDo()" />
+  </div>
+
+  <script>
+    // Hàm xử lý khi di chuột qua hình
+    function update(previewPic) {
+        console.log("Sự kiện được kích hoạt!");
+        console.log("Nguồn ảnh:", previewPic.src);
+        console.log("Mô tả alt:", previewPic.alt);
+
+        // Lấy phần tử div chính
+        let imageDiv = document.getElementById("image");
+
+        // Thay đổi nền
+        imageDiv.style.backgroundImage = `url(${previewPic.src})`;
+
+        // Thay đổi nội dung text
+        imageDiv.textContent = previewPic.alt;
+    }
+
+    // Hàm hoàn tác khi rời chuột
+    function unDo() {
+        console.log("Hoàn tác...");
+
+        let imageDiv = document.getElementById("image");
+
+        // Khôi phục về trạng thái ban đầu
+        imageDiv.style.backgroundImage = "url('')";
+        imageDiv.textContent = "Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.";
+    }
+  </script>
+</body>
+</html>
+
